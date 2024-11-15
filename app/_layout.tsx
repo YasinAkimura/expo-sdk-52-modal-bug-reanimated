@@ -1,12 +1,12 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { router, Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/components/useColorScheme';
+import { Button, View, Text } from 'react-native';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -46,14 +46,44 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen 
+            name="modalNoExitNoHeader" 
+            options={{ 
+                headerShown: true,
+                presentation: 'modal', 
+            }} 
+        />
+        <Stack.Screen 
+            name="modalWithExitNoHeader" 
+            options={{ 
+                headerShown: true,
+                presentation: 'modal', 
+            }} 
+        />
+        <Stack.Screen 
+            name="modalWithExitAndHeader" 
+            options={{ 
+                headerShown: true,
+                header: CustomHeader,
+                presentation: 'modal', 
+            }} 
+        />
       </Stack>
     </ThemeProvider>
   );
+}
+
+const CustomHeader = (props: any) => {
+    const { options } = props; 
+    return (
+        <View>
+        <Text>Header..</Text>
+        <Button title="NO BUG ON BACK" onPress={router.back}></Button>
+        </View>
+    );
 }
