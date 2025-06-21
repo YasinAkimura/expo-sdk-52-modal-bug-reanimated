@@ -36,4 +36,4 @@ yarn-error.*
 *.tsbuildinfo
 .yarn/cache
 .yarn/releases
-ios/*
+/ios/*
