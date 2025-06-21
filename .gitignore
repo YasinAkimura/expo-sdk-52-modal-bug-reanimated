@@ -35,4 +35,5 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 .yarn/cache
+.yarn/releases
 ios/*
