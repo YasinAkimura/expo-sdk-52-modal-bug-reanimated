@@ -34,6 +34,11 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+ios/*
+
+.yarn/*
 .yarn/cache
-.yarn/releases
-/ios/*
+.yarn/plugins
+.yarn/sdks
+.yarn/versions
